@@ -27,7 +27,7 @@ namespace PFCGen
 
         public Stats(Character me)
         {
-            statArray = getStats();
+            statArray = genStats();
         }
 
         public int[] getStats()

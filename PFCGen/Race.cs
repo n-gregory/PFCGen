@@ -42,6 +42,12 @@ namespace PFCGen
             myRace = races[rnd.Next(races.Length - 1)];
             addRaceMods(myRace, me);
         }*/
+
+        private void addRaceMods(Character me)
+        {
+            //overload for each race here
+        }
+        /*
         private void addRaceMods(string race, Character me)
         {
 
@@ -84,7 +90,7 @@ namespace PFCGen
             }
             //throw new NotImplementedException();
         }
-
+        */
         private void addFloatingBonus(Character me)
         {
             //find highest 3 stats, and what they are

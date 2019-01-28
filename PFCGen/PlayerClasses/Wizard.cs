@@ -8,5 +8,9 @@ namespace PFCGen.PlayerClasses
 {
     class Wizard : Class
     {
+        public Wizard()
+        {
+
+        }
     }
 }

@@ -8,5 +8,10 @@ namespace PFCGen.PlayerClasses
 {
     class Fighter: Class
     {
+        public Fighter()
+        {
+
+        }
+        
     }
 }

@@ -29,7 +29,7 @@ namespace PFCGen
         int threshhold = 10;
         String[] randClass = new String[] { "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Wizard" };
         String[] randRace = new String[] { "Dwarf", "Elf", "Gnome", "Half-Elf", "Half-Orc", "Halfling", "Human" };
-
+        Assembly assembly = Assembly.Load(new AssemblyName("PFCGen"));
         //stats and such
         public int Str = 10;
         public int Dex = 10;
@@ -337,7 +337,7 @@ namespace PFCGen
             }
             //throw new NotImplementedException();
         }
-
+        /*
         private void whichClass(int i, Random rnd)
         {
             //debugText.Text = "you rolled: ";
@@ -418,7 +418,8 @@ namespace PFCGen
             addRaceMods(raceBox.SelectedItem.ToString());
 
         }
-
+        */
+        /*
         private void genBarb(int[] stats)
         {
             //determine if strength is 1 or 2
@@ -832,33 +833,49 @@ namespace PFCGen
             chaBox.Text = stats[chaSpot].ToString();
 
         }
-        public void tryIt()
-        {
-            
-        }
+        */
         private void GenerateButtin_Click(object sender, RoutedEventArgs e)
         {
             rnd = new Random();
-           // FloatBonus = false;
-            //choose race
+
+            newMe.genStats(); //generate new stat array, and then display it
+            strBox.Text = newMe.MyStats.Strength.ToString();
+            dexBox.Text = newMe.MyStats.Dexterity.ToString();
+            conBox.Text = newMe.MyStats.Constitution.ToString();
+            intBox.Text = newMe.MyStats.Intelligence.ToString();
+            wisBox.Text = newMe.MyStats.Wisdom.ToString();
+            chaBox.Text = newMe.MyStats.Charisma.ToString();
+
             if (!raceLock.IsOn || raceBox.SelectedIndex < 0)
             {
                 //newMe.MyRace = new Races.Dwarf();
-                newMe = new Character();
-                raceBox.SelectedValue = newMe.MyRace.GetType().Name;
+                newMe.genRace(); //generate my race
+                raceBox.SelectedValue = newMe.MyRace.GetType().Name; //display my race
                 //raceBox.SelectedIndex = rnd.Next(randRace.Length - 1);
+            } else
+            {
+                newMe.MyRace = (Race)Activator.CreateInstance(newMe.MyRace.GetType()); //to redo any racial mods
             }
 
             //choose class
             if (!classLock.IsOn || classBox.SelectedIndex < 0)
             {
-                //newMe.MyStats = new Stats(newMe);
-                randGen(rnd);
+                newMe.genClass(); //generate my class
+                classBox.SelectedValue = newMe.MyClass.GetType().Name; //display my class
+                //randGen(rnd);
             } else
             {
-                whichClass(classBox.SelectedIndex, rnd);
+                Output.Text = "I was expecting a crash, but passed " + newMe.MyClass.GetType();
+                newMe.MyClass = (Class)Activator.CreateInstance(newMe.MyClass.GetType()); // to re-do any internal choices (feats, spells, etc)
+                //I think each class is going to need a stats reorder
+                // but, if I do it after race mods, that gets messy.
+                // I think this is going to need a switch, or a bitwise enum or similar
+                // to cater for each case. there are only 4 total options so far, so not too bad
+                // no lock, lock race, lock class, and lock race and class... ah, but then there's the "locked but none selected" as well...
+                //ah, I know, I'll have the race mods not part of the constructor for race, and call them out here
+                //that makes it simpler, and allows the "reorder()" thing to work, and if more options are added later, it is easier to do so.
             }
-            Output.Text = "I made a "+newMe.MyRace.MyRace+"\r\n which is from the class "+newMe.MyRace.GetType().Name;
+            //Output.Text = "I made a "+newMe.MyRace.MyRace+"\r\n which is from the class "+newMe.MyRace.GetType().Name;
         }
 
         private void threshBox_TextChanged(object sender, TextChangedEventArgs e)
