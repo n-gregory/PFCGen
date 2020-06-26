@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace PFCharGen.Races
 {
-    class Dwarf : Race
+    class Halfling : Race
     {
         override public void addRaceMods(Character me)
         {
-            me.MyStats.Constitution += 2;
-            me.MyStats.Wisdom += 2;
-            me.MyStats.Charisma -= 2;
+            me.MyStats.Dexterity += 2;
+            me.MyStats.Charisma += 2;
+            me.MyStats.Strength -= 2;
         }
     }
 }

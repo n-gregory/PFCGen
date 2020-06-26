@@ -1,12 +1,12 @@
-﻿using PFCGen.Races;
-using PFCGen.PlayerClasses;
+﻿using PFCharGen.Races;
+using PFCharGen.PlayerClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PFCGen
+namespace PFCharGen
 {
     class Character
     {
@@ -55,10 +55,17 @@ namespace PFCGen
                 myClass = new Wizard(); //initialise the list source
             }
             myClass = (Class)Activator.CreateInstance(myClass.ClassList[rnd.Next(myClass.ClassList.Count)]);
+            
         }
         public void genStats()
         {
             myStats = new Stats(this);
+        }
+        public void reOrder() {
+            int[] orderedStats = myStats.getStats(); //unordered
+            Array.Sort(orderedStats); //low to high
+            Array.Reverse(orderedStats); //highest first
+            myClass.applyStats(orderedStats, this);
         }
 
         internal Stats MyStats { get => myStats; set => myStats = value; }

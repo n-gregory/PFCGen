@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PFCGen.Races
+namespace PFCharGen.Races
 {
     class Elf : Race
     {
-        public void addRaceMods(Character me)
+        override public void addRaceMods(Character me)
         {
             me.MyStats.Dexterity += 2;
             me.MyStats.Intelligence += 2;

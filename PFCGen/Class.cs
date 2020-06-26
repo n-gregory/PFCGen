@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PFCGen
+namespace PFCharGen
 {
     abstract class Class
     {
@@ -23,11 +23,12 @@ namespace PFCGen
             "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Wizard"
         };
         */
-        List<Type> classList = Assembly.Load(new AssemblyName("PFCGen")).GetTypes().Where(a => a.Namespace != null && a.Namespace.Contains(@"PlayerClasses")).ToList();
+        List<Type> classList = Assembly.Load(new AssemblyName("PFCharGen")).GetTypes().Where(a => a.Namespace != null && a.Namespace.Contains(@"PlayerClasses")).ToList();
         public Class()
         {
 
         }
+        abstract public void applyStats(int[] stats, Character me);
 
         public int HitDiceBase { get => hitDiceBase; set => hitDiceBase = value; }
         public int Skills { get => skills; set => skills = value; }

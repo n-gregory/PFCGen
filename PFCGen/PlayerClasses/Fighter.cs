@@ -4,14 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PFCGen.PlayerClasses
+namespace PFCharGen.PlayerClasses
 {
     class Fighter: Class
     {
         public Fighter()
         {
+            
 
         }
-        
+        override public void applyStats(int[] stats, Character me){
+            return;
+        }
     }
 }

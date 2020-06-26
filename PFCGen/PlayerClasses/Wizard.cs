@@ -4,13 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PFCGen.PlayerClasses
+namespace PFCharGen.PlayerClasses
 {
     class Wizard : Class
     {
         public Wizard()
         {
 
+        }
+        override public void applyStats(int[] stats, Character me){
+            return;
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PFCGen
+namespace PFCharGen
 {
     abstract class Background
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 
-namespace PFCGen
+namespace PFCharGen
 {
     public interface IRace
     {
@@ -27,8 +27,8 @@ namespace PFCGen
 
         //Assembly test = typeof(Races.Elf).GetTypeInfo().Assembly;
         //List<Type> preRaceList = typeof(Races.Elf).GetTypeInfo().Assembly.GetTypes().ToList(); // new List<Type>();
-        //List<Type> x = Assembly.Load(new AssemblyName("PFCGen")).GetTypes().ToList();
-        List<Type> raceList = Assembly.Load(new AssemblyName("PFCGen")).GetTypes().Where(a => a.Namespace != null && a.Namespace.Contains(@"Races")).ToList();
+        //List<Type> x = Assembly.Load(new AssemblyName("PFCharGen")).GetTypes().ToList();
+        List<Type> raceList = Assembly.Load(new AssemblyName("PFCharGen")).GetTypes().Where(a => a.Namespace != null && a.Namespace.Contains(@"Races")).ToList();
 
 
         //foreach (var item in preRaceList)
@@ -43,10 +43,8 @@ namespace PFCGen
             addRaceMods(myRace, me);
         }*/
 
-        private void addRaceMods(Character me)
-        {
-            //overload for each race here
-        }
+        abstract public void addRaceMods(Character me);
+
         /*
         private void addRaceMods(string race, Character me)
         {
