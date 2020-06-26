@@ -14,5 +14,8 @@ namespace PFCharGen.Races
             me.MyStats.Intelligence += 2;
             me.MyStats.Constitution -= 2;
         }
+        public string ToString(){
+            return "Half Elf";
+        }
     }
 }

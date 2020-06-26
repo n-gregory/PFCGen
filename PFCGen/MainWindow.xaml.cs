@@ -28,99 +28,23 @@ namespace PFCharGen
         String[] randClass = new String[] { "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Wizard" };
         String[] randRace = new String[] { "Dwarf", "Elf", "Gnome", "Half-Elf", "Half-Orc", "Halfling", "Human" };
         Assembly assembly = Assembly.Load(new AssemblyName("PFCharGen"));
-        //stats and such
-        public int Str = 10;
-        public int Dex = 10;
-        public int Con = 10;
-        public int Int = 10;
-        public int Wis = 10;
-        public int Cha = 10;
         Character newMe = new Character();
         //public bool FloatBonus = false;
 
 
         public MainWindow() {
             InitializeComponent();
-
-            /*
-            foreach (var item in randClass)
-            {
-                classBox.Items.Add(item);
-            }
-            */
         
-            Assembly Test;
-            //Console.WriteLine("Assembly name: {0}", assem.FullName);
+            // Assembly Test;
 
             foreach (var item in newMe.MyRace.RaceList) {
-                //if (item.Namespace == "PFCharGen.Races") {
                     raceBox.Items.Add(item.Name);
-                //}
             }
-            //
-            /*
-            foreach (var item in newMe.MyRace.Races)
-            {
-                
-                raceBox.Items.Add(item);
-            }
-            */
             foreach (var item in newMe.MyClass.ClassList) {
-
                 classBox.Items.Add(item.Name);
-
             }
-            /*
-            foreach (var item in randRace)
-            {
-                raceBox.Items.Add(item);
-            }
-            */
         }
 
-        public int RollStat(Random rnd) {
-
-            int stat = 0;
-            //String result = "results were: ";
-            int[] dice = new int[4];
-            int low = 7;
-
-
-            foreach (int item in dice) {
-                //rnd = new Random();
-                dice[item] = rnd.Next(1, 7);
-                stat += dice[item];
-                //result += dice[item].ToString() +", ";
-                if (dice[item] < low) {
-                    low = dice[item];
-                }
-            }
-
-            /*
-            for (int i = 0; i < dice.Length; i++)
-            {
-                dice[i] = rnd.Next(1,7);
-                stat += dice[i];
-                if (dice[i] < low)
-                {
-                    low = dice[i];
-                }
-            }
-            */
-            stat -= low; ;
-            //result += " for a total stat of: " + stat.ToString() + "  the lowest result was: " + low.ToString(); 
-            return stat;
-        }
-        
-
-        private void addFloatingBonus() {
-            int i = rnd.Next(2);
-            int[] stats = { Str, Dex, Con, Int, Wis, Cha };
-            Array.Sort(stats);
-            Array.Reverse(stats);
-            stats[i] += 2;
-            //applyThreshhold.IsChecked = !applyThreshhold.IsChecked;
-        }
 
         private void GenerateButtin_Click(object sender, RoutedEventArgs e) {
             rnd = new Random();
