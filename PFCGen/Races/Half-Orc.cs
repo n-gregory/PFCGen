@@ -10,9 +10,7 @@ namespace PFCharGen.Races
     {
         override public void addRaceMods(Character me)
         {
-            me.MyStats.adjustStatValue("Dexterity",2);
-            me.MyStats.adjustStatValue("Intelligence",2);
-            me.MyStats.adjustStatValue("Constitution",-2);
+            me.MyStats.addFloatingBonus(2);
         }
     }
 }
