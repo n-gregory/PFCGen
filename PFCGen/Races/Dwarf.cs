@@ -10,9 +10,9 @@ namespace PFCharGen.Races
     {
         override public void addRaceMods(Character me)
         {
-            me.MyStats.Constitution += 2;
-            me.MyStats.Wisdom += 2;
-            me.MyStats.Charisma -= 2;
+            me.MyStats.adjustStatValue("Constitution" , 2);
+            me.MyStats.adjustStatValue("Wisdom", 2);
+            me.MyStats.adjustStatValue("Charisma ",-2);
         }
     }
 }
