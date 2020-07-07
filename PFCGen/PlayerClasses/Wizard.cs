@@ -8,11 +8,10 @@ namespace PFCharGen.PlayerClasses
 {
     class Wizard : Class
     {
-        public Wizard()
-        {
-
-        }
-        override public void applyStats(int[] stats, Character me){
+        String[] keyStats = {"Intelligence"};
+        
+        override public void applyStats(Character me){
+            me.MyStats.classOrder(keyStats);
             return;
         }
     }

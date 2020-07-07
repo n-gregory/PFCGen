@@ -133,6 +133,25 @@ namespace PFCharGen
             adjustStatValue(temp[i].getName(),val);
             return;
         }
+        public void classOrder(String[] list){
+            //get the list of key stats (method signature)
+            
+            //make a list of used indices, to avoid shuffling to the same spot all the time
+
+            //sort the list of stats
+
+            //for each item in list
+            //rename current statNode that shares the name of keystat (to temp or something)
+            //get the name of the stat at list random(index+1)
+            //store that stat name in a temporary string
+            //rename that stat with the key stat
+            //add the index to used list
+            //rename "temp" node with temporary string essentially just swapping the labels
+            //return
+
+
+            //
+        }
 
     }
 }

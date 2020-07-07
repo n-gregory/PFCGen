@@ -28,7 +28,7 @@ namespace PFCharGen
         {
 
         }
-        abstract public void applyStats(int[] stats, Character me);
+        abstract public void applyStats(Character me);
 
         public int HitDiceBase { get => hitDiceBase; set => hitDiceBase = value; }
         public int Skills { get => skills; set => skills = value; }
