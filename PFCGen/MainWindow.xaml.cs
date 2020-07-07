@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,10 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System;
-using System.Windows;
-using System.Reflection;
-using System.Windows.Controls;
+
 
 namespace PFCharGen
 {
@@ -25,8 +23,8 @@ namespace PFCharGen
      public sealed partial class MainWindow : Window {
         Random rnd = new Random();
         int threshhold = 10;
-        String[] randClass = new String[] { "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Wizard" };
-        String[] randRace = new String[] { "Dwarf", "Elf", "Gnome", "Half-Elf", "Half-Orc", "Halfling", "Human" };
+        // String[] randClass = new String[] { "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Wizard" };
+        // String[] randRace = new String[] { "Dwarf", "Elf", "Gnome", "Half-Elf", "Half-Orc", "Halfling", "Human" };
         Assembly assembly = Assembly.Load(new AssemblyName("PFCharGen"));
         Character newMe = new Character();
         //public bool FloatBonus = false;
@@ -47,11 +45,17 @@ namespace PFCharGen
 
 
         private void GenerateButtin_Click(object sender, RoutedEventArgs e) {
-            rnd = new Random();
+            // rnd = new Random();
 
             newMe.genStats(); //generate new stat array, and then display it
-
-
+            
+            Output.Text = "My Strength is: "+newMe.MyStats.getStatValue("Strength").ToString();
+            Output.Text += "\r\nMy Dexterity is: "+newMe.MyStats.getStatValue("Dexterity").ToString();
+            Output.Text += "\r\nMy Constitution is: "+newMe.MyStats.getStatValue("Constitution").ToString();
+            Output.Text += "\r\nMy Intelligence is: "+newMe.MyStats.getStatValue("Intelligence").ToString();
+            Output.Text += "\r\nMy Wisdom is: "+newMe.MyStats.getStatValue("Wisdom").ToString();
+            Output.Text += "\r\nMy Charisma is: "+newMe.MyStats.getStatValue("Charisma").ToString();
+            
             if (!raceLock.IsChecked.Value || raceBox.SelectedIndex < 0) {
                 //newMe.MyRace = new Races.Dwarf();
                 newMe.genRace(); //generate my race
@@ -65,7 +69,7 @@ namespace PFCharGen
                 //newMe.MyRace = (Race)Activator.CreateInstance(newMe.MyRace.GetType()); //to redo any racial mods
 
                 Type type = Type.GetType("" + ns + "." + raceBox.SelectedItem.GetType());
-                Output.Text = "I selected a(n) " + Type.GetType("" + ns + "." + raceBox.SelectedItem.ToString()).ToString();
+                // Output.Text = "I selected a(n) " + raceBox.SelectedItem.ToString();
                 newMe.MyRace = (Race)Activator.CreateInstance(Type.GetType("" + ns + "." + raceBox.SelectedItem.ToString())); //to redo any racial mods
             }
             
@@ -79,7 +83,7 @@ namespace PFCharGen
                 //Output.Text = "I was expecting a crash, but passed " + newMe.MyClass.GetType();
 
                 //reorder stats here
-                newMe.reOrder();
+                // newMe.reOrder();
                 newMe.MyClass = (Class)Activator.CreateInstance(newMe.MyClass.GetType()); // to re-do any internal choices (feats, spells, etc)
                                                                                               //I think each class is going to need a stats reorder
                                                                                               // but, if I do it after race mods, that gets messy.
@@ -91,16 +95,18 @@ namespace PFCharGen
             }
             newMe.MyRace.addRaceMods(newMe);
             updateStats();
-                //Output.Text = "I made a "+newMe.MyRace.MyRace+"\r\n which is from the class "+newMe.MyRace.GetType().Name;
+                // Output.Text = "I made a "+newMe.MyRace.MyRace+"\r\n which is from the class "+newMe.MyRace.GetType().Name;
             }
             private void updateStats() {
-            strBox.Text = newMe.MyStats.Strength.ToString();
-            dexBox.Text = newMe.MyStats.Dexterity.ToString();
-            conBox.Text = newMe.MyStats.Constitution.ToString();
-            intBox.Text = newMe.MyStats.Intelligence.ToString();
-            wisBox.Text = newMe.MyStats.Wisdom.ToString();
-            chaBox.Text = newMe.MyStats.Charisma.ToString();
-        }
+                //should also look at generic-ifying thing
+                //hopefully not too difficult to manage
+                strBox.Text = newMe.MyStats.getStatValue("Strength").ToString();
+                dexBox.Text = newMe.MyStats.getStatValue("Dexterity").ToString();
+                conBox.Text = newMe.MyStats.getStatValue("Constitution").ToString();
+                intBox.Text = newMe.MyStats.getStatValue("Intelligence").ToString();
+                wisBox.Text = newMe.MyStats.getStatValue("Wisdom").ToString();
+                chaBox.Text = newMe.MyStats.getStatValue("Charisma").ToString();
+            }
             private void threshBox_TextChanged(object sender, TextChangedEventArgs e)
             {
                 try {
