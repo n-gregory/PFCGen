@@ -10,16 +10,10 @@ namespace PFCharGen.Races
     {
         override public void addRaceMods(Character me)
         {
-            addFloatingBonus(me.MyStats);
+            me.MyStats.addFloatingBonus(2);
+            // addFloatingBonus(me.MyStats);
         }
-        private void addFloatingBonus(StatHandler sh){
-            int i = 1;
-            List<StatNode> temp = sh.getStatList();
-            temp.Sort((x, y) => x.StatValue.CompareTo(y.StatValue));
-            temp.Reverse();
-            sh.adjustStatValue(temp[i].getName(),2);
-            return;
-        }
+
         // private void addFloatingBonus(ref) {
         //     int i = rnd.Next(2);
         //     int[] stats = { Str, Dex, Con, Int, Wis, Cha };

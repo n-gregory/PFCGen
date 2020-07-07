@@ -29,7 +29,7 @@ namespace PFCharGen
             //Character[] me = new Character[] { this };
             if (myRace == null) 
             {
-                myRace = new Elf(); //initialise the list source
+                myRace = new Human(); //initialise the list source
                 myRace = (Race)Activator.CreateInstance(myRace.RaceList[rnd.Next(myRace.RaceList.Count)]);
             }
             if (myClass == null) 
@@ -46,7 +46,7 @@ namespace PFCharGen
         {
             if (myRace == null)
             {
-                myRace = new Elf(); //initialise the list source
+                myRace = new Human(); //initialise the list source
             }
             myRace = (Race)Activator.CreateInstance(myRace.RaceList[rnd.Next(myRace.RaceList.Count)]);
         }

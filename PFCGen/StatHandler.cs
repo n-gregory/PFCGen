@@ -117,6 +117,22 @@ namespace PFCharGen
             stat -= low;
             return stat;
         }
+        public void addFloatingBonus(){
+            int i = rnd.Next(3);
+            List<StatNode> temp = getStatList();
+            temp.Sort();
+            temp.Reverse();
+            adjustStatValue(temp[i].getName(),2);
+            return;
+        }
+        public void addFloatingBonus(int val){
+            int i = rnd.Next(3);
+            List<StatNode> temp = getStatList();
+            temp.Sort();
+            temp.Reverse();
+            adjustStatValue(temp[i].getName(),val);
+            return;
+        }
 
     }
 }

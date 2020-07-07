@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PFCharGen
 {
-    class StatNode 
+    class StatNode : IComparable<StatNode>
     {
         String statName;
         int statValue;
@@ -33,6 +33,15 @@ namespace PFCharGen
         }
         public void setName(String newName){
             statName = newName;
+        }
+        public int CompareTo(StatNode compareNode)
+        {
+            // A null value means that this object is greater.
+            if (compareNode == null)
+                return 1;
+
+            else
+                return this.getValue().CompareTo(compareNode.getValue());
         }
 
     }
