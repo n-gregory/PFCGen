@@ -92,9 +92,9 @@ namespace PFCharGen
         private void addFloatingBonus(Character me)
         {
             //find highest 3 stats, and what they are
-            int[] top3 = getTop3(me.MyStats.getStats()); //I now have the index of the top 3 stats
+            // int[] top3 = getTop3(me.MyStats.getStats()); //I now have the index of the top 3 stats
 
-            me.MyStats.getStats()[top3[rnd.Next(top3.Length-1)]] +=2; //add 2 to one of the top 3 stats
+            // me.MyStats.getStats()[top3[rnd.Next(top3.Length-1)]] +=2; //add 2 to one of the top 3 stats
 
         }
         private int[] getTop3(int[] array)

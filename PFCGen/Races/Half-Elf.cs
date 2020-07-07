@@ -10,9 +10,10 @@ namespace PFCharGen.Races
     {
         override public void addRaceMods(Character me)
         {
-            me.MyStats.Dexterity += 2;
-            me.MyStats.Intelligence += 2;
-            me.MyStats.Constitution -= 2;
+            me.MyStats.addFloatingBonus(2);
+        }
+        override public string ToString(){
+            return "Half Elf";
         }
     }
 }

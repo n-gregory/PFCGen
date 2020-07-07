@@ -8,18 +8,18 @@ namespace PFCharGen
 {
     abstract class Background
     {
-        String birth;
-        String homeland;
-        String family;
-        String adolescence;
-        String training;
-        String relationships;
-        String conflict;
-        String vulnerabilities;
-        int siblings;
-        int halfSiblings;
-        bool motherAlive;
-        bool fatherAlive;
+        // String birth;
+        // String homeland;
+        // String family;
+        // String adolescence;
+        // String training;
+        // String relationships;
+        // String conflict;
+        // String vulnerabilities;
+        // int siblings;
+        // int halfSiblings;
+        // bool motherAlive;
+        // bool fatherAlive;
 
         public Background( Race myRace, Class myClass)
         {
