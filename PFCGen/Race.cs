@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
+using DebugTools;
 
 namespace PFCharGen
 {
@@ -17,6 +18,7 @@ namespace PFCharGen
 
         public Race()
         {
+            DebugHelper.addMessage("I created a character with race: "+this.GetType().ToString());
         }
 
         static String[] races = new String[] //make this an enum or something, probably makes it easier in future rather than typing it all out.

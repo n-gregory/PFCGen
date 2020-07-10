@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using DebugTools;
 
 namespace PFCharGen
 {
@@ -26,7 +27,7 @@ namespace PFCharGen
         List<Type> classList = Assembly.Load(new AssemblyName("PFCharGen")).GetTypes().Where(a => a.Namespace != null && a.Namespace.Contains(@"PlayerClasses")).ToList();
         public Class()
         {
-
+            DebugHelper.addMessage("I created a character with class: "+this.GetType().ToString());
         }
         abstract public void applyStats(Character me);
 
