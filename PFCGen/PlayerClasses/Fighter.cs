@@ -8,12 +8,10 @@ namespace PFCharGen.PlayerClasses
 {
     class Fighter: Class
     {
-        public Fighter()
-        {
-            
-
-        }
-        override public void applyStats(int[] stats, Character me){
+        String[] keyStats = {"Strength", "Dexterity"};
+        
+        override public void applyStats(Character me){
+            me.MyStats.classOrder(keyStats);
             return;
         }
     }
