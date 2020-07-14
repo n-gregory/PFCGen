@@ -48,6 +48,9 @@ namespace PFCharGen
             // rnd = new Random();
 
             newMe.genStats(); //generate new stat array, and then display it
+            while (newMe.MyStats.getHighestValue() < threshhold && applyThreshhold.IsChecked.Value){
+                newMe.genStats();
+            }
             
             Output.Text = "My Strength is: "+newMe.MyStats.getStatValue("Strength").ToString();
             Output.Text += "\r\nMy Dexterity is: "+newMe.MyStats.getStatValue("Dexterity").ToString();
@@ -75,8 +78,16 @@ namespace PFCharGen
             
                          //choose class
             if (!classLock.IsChecked.Value || classBox.SelectedIndex < 0) { //if not locked or selected
-                newMe.genClass(); //generate my class
-                classBox.SelectedValue = newMe.MyClass.GetType().Name; //display my class
+                //generate my class
+                // newMe.genClass(); 
+
+                //generate class from stats
+                String cns = newMe.MyClass.GetType().Namespace;
+                String tempClassString = newMe.MyClass.getRandClass(newMe.MyStats); 
+                newMe.MyClass = (Class)Activator.CreateInstance(Type.GetType("" + cns + "." + tempClassString));
+                
+                //display my class
+                classBox.SelectedValue = newMe.MyClass.GetType().Name; 
                                                                        //randGen(rnd);
             }
             else { //if locked and selected
@@ -85,19 +96,13 @@ namespace PFCharGen
                 //reorder stats here
                 // newMe.reOrder();
                 String cns = newMe.MyClass.GetType().Namespace;
+
                 newMe.MyClass = (Class)Activator.CreateInstance(Type.GetType("" + cns + "." + classBox.SelectedItem.ToString()));
-                // newMe.MyClass = (Class)Activator.CreateInstance(newMe.MyClass.GetType()); 
-                    // to re-do any internal choices (feats, spells, etc)
-                    //I think each class is going to need a stats reorder
-                    // but, if I do it after race mods, that gets messy.
-                    // I think this is going to need a switch, or a bitwise enum or similar
-                    // to cater for each case. there are only 4 total options so far, so not too bad
-                    // no lock, lock race, lock class, and lock race and class... ah, but then there's the "locked but none selected" as well...
-                    //ah, I know, I'll have the race mods not part of the constructor for race, and call them out here
-                    //that makes it simpler, and allows the "reorder()" thing to work, and if more options are added later, it is easier to do so.
+                
             }
-            newMe.MyClass.applyStats(newMe);
-            // newMe.MyRace.addRaceMods(newMe);
+            // newMe.MyClass.applyStats(newMe);
+            // newMe.MyClass.getRandClass(newMe.MyStats);
+            newMe.MyRace.addRaceMods(newMe);
             updateStats();
                 // Output.Text = "I made a "+newMe.MyRace.MyRace+"\r\n which is from the class "+newMe.MyRace.GetType().Name;
             }
