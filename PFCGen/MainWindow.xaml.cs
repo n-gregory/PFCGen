@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using pdfHandler;
 
 
 namespace PFCharGen
@@ -105,6 +106,7 @@ namespace PFCharGen
             // newMe.MyClass.getRandClass(newMe.MyStats);
             newMe.MyRace.addRaceMods(newMe);
             updateStats();
+            pdfWriter.writeTest();
                 // Output.Text = "I made a "+newMe.MyRace.MyRace+"\r\n which is from the class "+newMe.MyRace.GetType().Name;
             }
             private void updateStats() {
