@@ -98,6 +98,7 @@ namespace PFCharGen
                 String cns = newMe.MyClass.GetType().Namespace;
 
                 newMe.MyClass = (Class)Activator.CreateInstance(Type.GetType("" + cns + "." + classBox.SelectedItem.ToString()));
+                newMe.MyClass.applyStats(newMe);
                 
             }
             // newMe.MyClass.applyStats(newMe);
