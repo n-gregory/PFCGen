@@ -8,7 +8,7 @@ namespace PFCharGen.PlayerClasses
 {
     class Barbarian: Class
     {
-        String[] keyStats = {"Strength", "Consitution"};
+        String[] keyStats = {"Strength", "Constitution"};
         
         override public void applyStats(Character me){
             me.MyStats.classOrder(keyStats);
