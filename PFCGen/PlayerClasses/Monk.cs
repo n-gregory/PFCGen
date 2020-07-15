@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace PFCharGen.PlayerClasses
 {
-    class Fighter: Class
+    class Monk: Class
     {
-        String[] keyStats = {"Strength"};
+        String[] keyStats = {"Strength", "Wisdom", "Dexterity"};
         
         override public void applyStats(Character me){
             me.MyStats.classOrder(keyStats);

@@ -60,7 +60,10 @@ namespace PFCharGen
         public void adjustStatValue(String name,int i) {
             // if stat exists, add i to value of stat
             if (statExists(name)){
+                DebugHelper.addMessage("Adding "+i.ToString()+" to "+name);
                 getStat(name).setValue(getStat(name).getValue()+i);
+                DebugHelper.addMessage("New total for "+name+":"+getStat(name).getValue().ToString());
+                
             }
             
             
@@ -136,6 +139,13 @@ namespace PFCharGen
             adjustStatValue(temp[i].getName(),val);
             return;
         }
+        public int getHighestValue(){
+            List<StatNode> temp = statList;
+            temp.Sort();
+            temp.Reverse();
+            // int val = 
+            return temp[0].getValue();
+        }
         public void classOrder(String[] list){
             //get the list of key stats (method signature)
             // DebugHelper.addMessage("starting my reordering");
@@ -165,13 +175,13 @@ namespace PFCharGen
                 // int int_tar = 3;
                 // DebugHelper.addMessage("target index manually set to : "+int_tar.ToString());
                 int int_tar = Util.GetRandom(0,pos+2);
-                DebugHelper.addMessage("before while loop, target index: "+int_tar.ToString());
+                // DebugHelper.addMessage("before while loop, target index: "+int_tar.ToString());
                 while (used.Contains(int_tar)) {
-                    DebugHelper.addMessage("encountered used index, changing to new index");
+                    // DebugHelper.addMessage("encountered used index, changing to new index");
                     int_tar = Util.GetRandom(0,pos+2);
-                    DebugHelper.addMessage("inside while loop, target index: "+int_tar.ToString());
+                    // DebugHelper.addMessage("inside while loop, target index: "+int_tar.ToString());
                 }
-                DebugHelper.addMessage("after while loop, target index: "+int_tar.ToString());
+                // DebugHelper.addMessage("after while loop, target index: "+int_tar.ToString());
                 // int target = 1;
                 //get the name of the stat at list target index
                 //store that stat name in a temporary string
@@ -180,9 +190,9 @@ namespace PFCharGen
                 renameStat(tempString,label);
                 //rename "temp" node with temporary string essentially just swapping the labels
                 renameStat("temp",tempString);
-                DebugHelper.addMessage("length of used array: "+used.Length.ToString());
+                // DebugHelper.addMessage("length of used array: "+used.Length.ToString());
                 used = used.Append(int_tar).ToArray();
-                DebugHelper.addMessage("length of used array after append: "+used.Length.ToString());
+                // DebugHelper.addMessage("length of used array after append: "+used.Length.ToString());
                 pos++;
                 DebugHelper.addMessage("Adjusted stat:"+label);
             }
