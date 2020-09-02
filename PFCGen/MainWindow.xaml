@@ -34,6 +34,7 @@
         <ComboBox x:Name="raceBox" HorizontalAlignment="Left" Margin="21,75,0,0" VerticalAlignment="Top" Width="170" IsSynchronizedWithCurrentItem="False" FontFamily="Harrington" FontSize="24" Grid.Column="1"/>
         <ToggleButton x:Name="raceLock" HorizontalAlignment="Left" Margin="226,75,0,0" VerticalAlignment="Top" Height="34" Width="43" Grid.Column="1"/>
         <TextBlock x:Name="Output" HorizontalAlignment="Left" Margin="440,210,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Height="260" Width="260" Grid.Column="1"/>
+        <Button x:Name="TestButton" Content="Test" HorizontalAlignment="Left" Margin="148,170,0,0" VerticalAlignment="Top" Click="TestButton_Click" Grid.Column="1"/>
 
     </Grid>
 </Window>

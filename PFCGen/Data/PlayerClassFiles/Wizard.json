@@ -1,0 +1,16 @@
+{
+	"ClassName": "Wizard",
+	"PrimaryAttributes": ["Charisma"],
+	"ClassAbilities": [
+		{
+			"AbilityName" : "Spellcasting",
+			"ClassLevel": 1,
+			"AbilityText": "you get spellcasting"
+		},
+		{
+			"AbilityName" : "Familiar",
+			"ClassLevel": 1,
+			"AbilityText": "you get a familiar"
+		}
+	]
+}

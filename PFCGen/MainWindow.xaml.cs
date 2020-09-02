@@ -14,6 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+// using MyUtilities;
+using DebugTools;
+
 
 namespace PFCharGen
 {
@@ -29,6 +32,10 @@ namespace PFCharGen
         Character newMe = new Character();
         //public bool FloatBonus = false;
 
+        //Testing the new JSON reader things
+        String testString = @"Data\PlayerClassFiles\Wizard.json";
+        PlayerClass testPC;
+        JSONToClass testJSON = new JSONToClass();
 
         public MainWindow() {
             InitializeComponent();
@@ -41,6 +48,13 @@ namespace PFCharGen
             foreach (var item in newMe.MyClass.ClassList) {
                 classBox.Items.Add(item.Name);
             }
+        }
+        public void TestButton_Click(object sender, RoutedEventArgs e){
+            testJSON.makePlayerClass(testString);
+            testPC = testJSON.giveResults();
+            DebugHelper.addMessage("Didn't crash, at least");
+            DebugHelper.addMessage("please: "+testPC.getName());
+            return;
         }
 
 
